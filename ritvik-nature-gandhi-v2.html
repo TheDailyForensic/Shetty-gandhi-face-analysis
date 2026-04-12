@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Forensic — Ritvik "Nature" & The Mahatma</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color: #1a1a1a; }
+
+/* MASTHEAD */
+.masthead { background: #1a1a1a; color: #f5f0e8; text-align: center; padding: 1.2rem 2rem 1rem; border-bottom: 4px solid #c8a84b; }
+.masthead-top { display: flex; justify-content: space-between; align-items: center; font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: #888; margin-bottom: 0.6rem; text-transform: uppercase; }
+.paper-name { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1; color: #f5f0e8; }
+.paper-tagline { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.35em; color: #c8a84b; text-transform: uppercase; margin-top: 0.4rem; }
+.breaking { background: #c8a84b; color: #1a1a1a; text-align: center; padding: 0.4rem; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 700; }
+
+/* CONTAINER */
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+/* ARTICLE HEADER */
+.article-category { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #c8a84b; margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid #c8a84b; display: inline-block; }
+.headline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; color: #1a1a1a; }
+.subheadline { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; font-weight: 400; color: #444; line-height: 1.6; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 2px solid #1a1a1a; }
+.byline { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; color: #666; text-transform: uppercase; margin-bottom: 2rem; display: flex; gap: 2rem; flex-wrap: wrap; }
+.byline span { color: #1a1a1a; font-weight: 600; }
+
+/* PHOTO SPREAD */
+.photo-spread { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 2.5rem; border: 2px solid #1a1a1a; }
+.photo-item { position: relative; height: 320px; overflow: hidden; background: #e8e0d0; display: flex; align-items: center; justify-content: center; }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: sepia(15%) contrast(1.05); }
+.photo-item:first-child { border-right: 1px solid #1a1a1a; }
+.photo-item:last-child { border-left: 1px solid #1a1a1a; }
+.photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(26,26,26,0.88); padding: 0.7rem 1rem; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; color: #f5f0e8; text-transform: uppercase; }
+.photo-caption em { display: block; font-style: italic; color: #c8a84b; font-size: 0.65rem; letter-spacing: 0.05em; text-transform: none; margin-top: 0.15rem; }
+
+/* PLACEHOLDER STYLING */
+.photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #e8e0d0; border: 2px dashed #c8a84b; gap: 0.5rem; }
+.photo-placeholder .placeholder-icon { font-size: 2.5rem; opacity: 0.4; }
+.photo-placeholder .placeholder-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #999; }
+
+/* ARTICLE BODY */
+.article-body { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+.main-text p { font-size: 1rem; line-height: 1.85; margin-bottom: 1.4rem; color: #222; text-align: justify; }
+.main-text p:first-child::first-letter { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 900; float: left; line-height: 0.75; margin-right: 0.1em; margin-top: 0.1em; color: #1a1a1a; }
+
+/* PULL QUOTE */
+.pull-quote { border-top: 3px solid #1a1a1a; border-bottom: 3px solid #1a1a1a; padding: 1.2rem 0; margin: 2rem 0; font-family: 'Playfair Display', serif; font-size: 1.35rem; font-style: italic; font-weight: 700; line-height: 1.4; color: #1a1a1a; }
+.pull-quote cite { display: block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c8a84b; margin-top: 0.6rem; font-style: normal; font-weight: 400; }
+
+/* SECTION HEADS */
+.section-head { font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: #1a1a1a; margin: 2rem 0 0.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid #ccc; }
+.chapter-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: #c8a84b; margin: 2.5rem 0 0.4rem; }
+.chapter-head { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem; line-height: 1.3; }
+
+/* SIDEBAR */
+.sidebar { border-left: 2px solid #1a1a1a; padding-left: 1.5rem; }
+.sidebar-box { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #ccc; }
+.sidebar-box:last-child { border-bottom: none; }
+.sidebar-title { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: #c8a84b; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid #c8a84b; }
+
+/* SCORE CARD */
+.score-card { background: #1a1a1a; color: #f5f0e8; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+.score-number { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; color: #c8a84b; line-height: 1; }
+.score-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; color: #888; text-transform: uppercase; margin-top: 0.3rem; }
+
+/* TRAIT BARS */
+.trait-row { margin-bottom: 0.9rem; }
+.trait-name { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #444; margin-bottom: 0.25rem; display: flex; justify-content: space-between; }
+.trait-name strong { color: #1a1a1a; }
+.bar-track { height: 4px; background: #e0d8c8; }
+.bar-fill { height: 100%; background: #1a1a1a; }
+
+/* FACT ITEMS */
+.fact-item { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.7rem; }
+.fact-icon { color: #c8a84b; font-size: 0.8rem; margin-top: 0.15rem; flex-shrink: 0; }
+.fact-text { font-size: 0.8rem; line-height: 1.5; color: #333; }
+
+/* COMPARISON GRID */
+.comparison-box { border: 2px solid #1a1a1a; margin: 2rem 0; }
+.comparison-box-title { background: #1a1a1a; color: #f5f0e8; font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; padding: 0.6rem 1rem; }
+.compare-cols { display: grid; grid-template-columns: 1fr 1fr; }
+.compare-col { padding: 1.2rem 1rem; }
+.compare-col:first-child { border-right: 1px solid #ccc; }
+.compare-col-head { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c8a84b; margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid #c8a84b; }
+.compare-col ul { list-style: none; }
+.compare-col ul li { font-size: 0.82rem; line-height: 1.55; padding: 0.35rem 0; border-bottom: 1px solid #eee; color: #333; display: flex; gap: 0.5rem; }
+.compare-col ul li::before { content: '◆'; font-size: 0.45rem; color: #c8a84b; margin-top: 5px; flex-shrink: 0; }
+
+/* PRIEST BOX */
+.priest-box { background: #1a1a1a; color: #f5f0e8; padding: 1.5rem; margin: 2rem 0; border-left: 6px solid #c8a84b; }
+.priest-box-title { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #c8a84b; margin-bottom: 0.8rem; }
+.priest-box p { font-size: 0.9rem; line-height: 1.7; color: #ccc; }
+
+/* FOOTER TAGS */
+.footer-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 1.5rem; border-top: 2px solid #1a1a1a; }
+.tag { font-family: 'Oswald', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.25rem 0.6rem; border: 1px solid #1a1a1a; color: #1a1a1a; }
+
+/* PAPER FOOTER */
+.paper-footer { background: #1a1a1a; color: #666; text-align: center; padding: 1rem; font-family: 'Oswald', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 2rem; }
+
+/* ORNAMENT DIVIDER */
+.ornament { text-align: center; font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.5em; color: #c8a84b; margin: 2.5rem 0; border: none; }
+.ornament::before { content: '— ✦ —'; }
+
+@media (max-width: 700px) {
+  .article-body { grid-template-columns: 1fr; }
+  .sidebar { border-left: none; border-top: 2px solid #1a1a1a; padding-left: 0; padding-top: 1.5rem; }
+  .photo-spread { grid-template-columns: 1fr; }
+  .photo-item:first-child { border-right: none; border-bottom: 1px solid #1a1a1a; }
+  .compare-cols { grid-template-columns: 1fr; }
+  .compare-col:first-child { border-right: none; border-bottom: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-top">
+    <span>Sunday, April 12, 2026</span>
+    <span>Cultural Analysis Edition</span>
+    <span>Vol. XLII · No. 102</span>
+  </div>
+  <div class="paper-name">The Daily Forensic</div>
+  <div class="paper-tagline">Truth In Every Pixel — Science In Every Story</div>
+</div>
+
+<div class="breaking">⚡ Special Report: The Resemblance That Has Baffled Historians, Philosophers, and the General Public ⚡</div>
+
+<div class="container">
+
+  <div class="article-category">Investigative Cultural Analysis — Tribute Edition</div>
+
+  <h1 class="headline">When Nature Mirrors the Father of a Nation: The Uncanny Case of Ritvik and the Mahatma</h1>
+
+  <p class="subheadline">A landmark forensic-cultural investigation into the astonishing physical, philosophical, and spiritual resemblance between Mahatma Gandhi — Father of the Indian Nation, Apostle of Peace — and Ritvik, known universally to friends and foes alike as "Nature," a young man whose very nickname may be the most Gandhian thing about him.</p>
+
+  <div class="byline">
+    By <span>Dr. Priya Shastri</span> &nbsp;|&nbsp; Senior Cultural Correspondent &nbsp;|&nbsp; <span>The Daily Forensic</span> &nbsp;|&nbsp; April 12, 2026
+  </div>
+
+  <!-- PHOTO SPREAD WITH PLACEHOLDERS -->
+  <div class="photo-spread">
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <div class="placeholder-icon">🌿</div>
+        <div class="placeholder-label">Photo of Ritvik "Nature"</div>
+      </div>
+      <div class="photo-caption">
+        Ritvik — "Nature"
+        <em>Young man of remarkable calm · Known gravitational effect on all in his orbit</em>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder">
+        <div class="placeholder-icon">🕊️</div>
+        <div class="placeholder-label">Photo of Mahatma Gandhi</div>
+      </div>
+      <div class="photo-caption">
+        Mahatma Gandhi
+        <em>Father of the Indian Nation · Apostle of Peace · Born: Oct 2, 1869, Porbandar</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <div class="article-body">
+
+    <!-- MAIN TEXT -->
+    <div class="main-text">
+
+      <p>There are moments in life when you look at someone and feel an inexplicable pull of recognition — not because you have met them before, but because their face, their manner, their very essence feels borrowed from history. Such is the experience of meeting, knowing, or even merely glimpsing Ritvik, a young man whose nickname, "Nature," carries a poetry all its own. Friends, family, and casual acquaintances alike have remarked — sometimes with a double-take, sometimes with a burst of laughter — that Ritvik bears a striking, almost supernatural resemblance to none other than Mohandas Karamchand Gandhi, the Father of the Indian Nation, the Mahatma, the Great Soul.</p>
+
+      <p>This is not a mere throwaway comparison. It is not the lazy sort of remark one makes when two bald men are spotted in the same room, or when someone happens to wear round spectacles at a fancy-dress party. No — the resemblance between Ritvik "Nature" and Mahatma Gandhi runs deep. It sprawls across the physical, the philosophical, the habitual, and even the comedic. It is the kind of resemblance that demands documentation, that cries out for an essay, that insists on being told at length and in full.</p>
+
+      <div class="pull-quote">
+        "When Nature walks into a room, something shifts. It is as though the spirit of simplicity itself has arrived — unannounced, unassuming, and entirely unforgettable."
+        <cite>— Observation from those who know him</cite>
+      </div>
+
+      <div class="chapter-label">Chapter One</div>
+      <div class="chapter-head">The Name "Nature" and the Philosophy Behind It</div>
+
+      <p>Before we dive headfirst into the physical resemblance, we must pause and appreciate something beautiful: the nickname itself. Ritvik is called "Nature." Not "Rocky," not "Vicky," not "Ritz" — but <em>Nature</em>. And if you know anything about Mahatma Gandhi, you will immediately understand why this nickname is not merely a fun coincidence, but practically a cosmic alignment.</p>
+
+      <p>Mahatma Gandhi was, above all else, a man of nature. He believed in the simplest, most elemental way of living — close to the earth, close to the soil, untouched by the excesses of modern civilization. Gandhi walked barefoot upon the land he loved. He ate the simplest foods. He wove his own cloth on a spinning wheel. His entire philosophy was rooted in the idea that humanity had drifted too far from its natural state, and that the only path to salvation — personal and political — lay in returning to it.</p>
+
+      <p>And then there is Ritvik. Called Nature. A young man whose very moniker suggests the same elemental quality, the same groundedness, the same sense that he belongs not to the noisy, chaotic world of modernity but to something quieter, older, and wiser. His friends did not call him Nature by accident. Nicknames are usually born from truth, and this one speaks volumes.</p>
+
+      <p>Gandhi famously said: "Live simply so that others may simply live." It was not just a slogan — it was his entire existence compressed into a single sentence. Ritvik — Nature — carries this same quality of uncomplicated simplicity. There is no pretense about him, no performance. What you see is what you get, and what you get is a person who does not seem particularly interested in accumulating things, airs, or affectations.</p>
+
+      <div class="chapter-label">Chapter Two</div>
+      <div class="chapter-head">The Physical Likeness: Feature by Feature</div>
+
+      <p>Now we arrive at the most delightful part of this exploration: the physical resemblance. Gandhi's eyes were extraordinary — bright and piercing in photographs, carrying the quality of someone who had looked deeply into human suffering and chosen, consciously and repeatedly, to respond with love rather than bitterness. They were not aggressive eyes. They were patient eyes. Listening eyes.</p>
+
+      <p>Ritvik's eyes carry this same quality. There is a patience in them, a gentleness, that disarms people. He is not the kind of person whose gaze demands or challenges. He looks at you the way the Mahatma looked at everyone — as if you are worthy of his full attention, as if whatever you are saying matters deeply, even if what you are saying is something entirely unimportant like your opinion about a cricket match.</p>
+
+      <div class="comparison-box">
+        <div class="comparison-box-title">Comparative Analysis — Physical & Temperamental Traits</div>
+        <div class="compare-cols">
+          <div class="compare-col">
+            <div class="compare-col-head">🕊️ Mahatma Gandhi</div>
+            <ul>
+              <li>Round, wire-rimmed spectacles perched precisely</li>
+              <li>Lean, spare frame built for endurance, not display</li>
+              <li>Wide, toothy, completely unaffected smile</li>
+              <li>Patient, deeply attentive eyes that missed nothing</li>
+              <li>Walked with a staff — unhurried, purposeful gait</li>
+              <li>Shaved head — deliberate stripping away of vanity</li>
+              <li>An air of absolute calm in all circumstances</li>
+            </ul>
+          </div>
+          <div class="compare-col">
+            <div class="compare-col-head">🌿 Ritvik "Nature"</div>
+            <ul>
+              <li>A face that feels oddly, historically familiar</li>
+              <li>Lean build that wears simplicity like a natural garment</li>
+              <li>Smile that arrives fully, leaves warmth behind</li>
+              <li>Eyes that actually listen — not just wait to speak</li>
+              <li>An unhurried quality to his movement and manner</li>
+              <li>Hair that somehow suggests a quiet asceticism</li>
+              <li>A disarming tranquility that is deeply, maddeningly Gandhian</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p>The comparison is not merely fanciful. Those who have seen Ritvik and Gandhi side by side — in photographs, naturally — describe the experience as slightly eerie. Something in the geometry of the face, the proportion of the features, the overall silhouette, echoes across decades. History, it seems, has a sense of humor.</p>
+
+      <div class="chapter-label">Chapter Three</div>
+      <div class="chapter-head">The Philosopher's Calm: Inner Life and Temperament</div>
+
+      <p>Gandhi's most devastating weapon was not the march, the fast, or the spinning wheel. It was his patience. He had the capacity to sit with suffering — his own and others' — without crumbling, without retaliating, without losing sight of his larger purpose. This quality of serene, unshakeable calm was what unnerved his opponents most and inspired his followers most deeply.</p>
+
+      <p>Those who know Ritvik describe a similar quality. He is the person you call when things have gone wrong, not merely because he will offer practical assistance, but because his very presence has a stabilizing effect. Something about his manner — unhurried, unpanicked, fundamentally grounded — has the effect of making the people around him calmer, cleaner, more capable of thinking clearly. This is not a small gift. It is, in fact, one of the rarest and most valuable things one human being can offer another.</p>
+
+      <div class="priest-box">
+        <div class="priest-box-title">✦ The Gravitational Effect — Field Report</div>
+        <p>Both Gandhi and Ritvik share what we might call a <strong>gravitational effect</strong> on the people around them. In Gandhi's case, this manifested on a world-historical scale — millions were drawn into his orbit. In Ritvik's case, the scale is smaller — as befits a young man navigating the ordinary demands of life rather than the liberation of a subcontinent. But the quality is the same. People seek him out when they are troubled. They feel better after spending time with him, and they are not always sure why.</p>
+      </div>
+
+      <div class="chapter-label">Chapter Four — Conclusion</div>
+      <div class="chapter-head">Long Live the Resemblance</div>
+
+      <p>Ritvik, known to all as Nature, resembles Mahatma Gandhi in the following ways, among others: physically, in the architecture of his face and the quiet economy of his physical presence; temperamentally, in his patience, his humor, his deep and practiced calm; philosophically, in his instinctive preference for simplicity over complexity and honesty over flattery; and nominatively — in the single, perfect, unimprovable word that his friends have chosen to call him: Nature. The same word Gandhi spent his entire life reclaiming for humanity.</p>
+
+      <p>When Ritvik — Nature — walks through the world with his particular blend of patience and humor and genuine presence, he is, without knowing it, answering that call. He is one small embodiment of the Gandhian dream: that ordinary people, in ordinary circumstances, can choose to be kind rather than cruel, calm rather than chaotic, simple rather than showy. That is a dream worth having.</p>
+
+      <div class="pull-quote">
+        "Be the change you wish to see in the world." Gandhi said that. And apparently, he was talking about Ritvik.
+        <cite>— One of Nature's friends, with only partial irony</cite>
+      </div>
+
+      <hr class="ornament" />
+
+      <p style="text-align:center; font-family:'Oswald',sans-serif; font-size:0.75rem; letter-spacing:0.1em; color:#888; font-style:italic; margin-top:10px;">Dedicated to Ritvik "Nature" — who will read this, smile in that particular way of his, say something quietly devastating about the whole thing, and then offer to make everyone chai. Just as Gandhi would have done.</p>
+
+      <div class="footer-tags">
+        <span class="tag">Cultural Analysis</span>
+        <span class="tag">Tribute Essay</span>
+        <span class="tag">Ritvik "Nature"</span>
+        <span class="tag">Mahatma Gandhi</span>
+        <span class="tag">Resemblance Studies</span>
+        <span class="tag">The Daily Forensic</span>
+        <span class="tag">India</span>
+        <span class="tag">Long Read</span>
+      </div>
+
+    </div><!-- /main-text -->
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Resemblance Score</div>
+        <div class="score-card">
+          <div class="score-number">94%</div>
+          <div class="score-label">Overall Gandhian Alignment</div>
+        </div>
+        <p style="font-size:0.78rem; color:#555; font-style:italic; line-height:1.5;">Based on comprehensive analysis across physical, philosophical, temperamental, and nominative dimensions.</p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Trait Analysis</div>
+
+        <div class="trait-row">
+          <div class="trait-name">Patience <strong>97%</strong></div>
+          <div class="bar-track"><div class="bar-fill" style="width:97%"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-name">Simplicity <strong>91%</strong></div>
+          <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-name">Gravitational Calm <strong>95%</strong></div>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-name">Physical Likeness <strong>88%</strong></div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-name">Nickname Poetry <strong>100%</strong></div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Key Facts — Ritvik</div>
+        <div class="fact-item">
+          <span class="fact-icon">🌿</span>
+          <span class="fact-text">Nickname "Nature" — coined organically by his social circle, now considered inevitable</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">👁️</span>
+          <span class="fact-text">Eyes described by multiple sources as "listening eyes" — a rare and Gandhian trait</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">😌</span>
+          <span class="fact-text">Smile that "arrives fully and leaves warmth behind" — zero artifice detected</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">🪷</span>
+          <span class="fact-text">Gravitational effect confirmed: people report feeling calmer after being in his presence</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">☕</span>
+          <span class="fact-text">Reliably offers to make chai in all difficult emotional situations</span>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">Key Facts — Gandhi</div>
+        <div class="fact-item">
+          <span class="fact-icon">🕊️</span>
+          <span class="fact-text">Led India to independence via non-violent civil disobedience</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">🧵</span>
+          <span class="fact-text">Wove his own cloth daily on a charkha as a philosophical statement</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">👣</span>
+          <span class="fact-text">Walked 240 miles in the 1930 Salt March — unhurried, purposeful</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-icon">😄</span>
+          <span class="fact-text">Possessed a famously wide, gap-toothed, entirely unguarded smile</span>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">The Fancy-Dress Prophecy</div>
+        <p style="font-size:0.8rem; line-height:1.6; color:#333; font-style:italic;">Somewhere in the future, Ritvik will put on a dhoti, acquire a pair of round spectacles, and carry a walking staff. When he does, the effect will be so complete that someone will walk up to him with complete sincerity and ask him what he thinks about the current state of salt taxation.</p>
+        <p style="font-size:0.72rem; color:#888; margin-top:0.5rem; font-family:'Oswald',sans-serif; letter-spacing:0.1em; text-transform:uppercase;">— We await it eagerly.</p>
+      </div>
+
+    </div><!-- /sidebar -->
+
+  </div><!-- /article-body -->
+
+</div><!-- /container -->
+
+<div class="paper-footer">
+  © 2026 The Daily Forensic · Truth In Every Pixel · All Rights Reserved · Forensic Cultural Division
+</div>
+
+</body>
+</html>
