@@ -208,7 +208,8 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    /* This is the Flexbox equivalent of vertical-align: top */
+    align-items: flex-start; 
     gap: 30px;
     padding: 20px;
     width: 100%;
@@ -219,13 +220,14 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
     flex: 1;
     max-width: 450px;
     text-align: center;
-    /* Restoring the original font style */
-    font-family: serif; 
+    font-family: serif; /* Original font style */
   }
 
   .photo-placeholder {
     position: relative;
     width: 100%;
+    /* Forces the vertical alignment at the top level */
+    vertical-align: top; 
   }
 
   .photo-placeholder img {
@@ -234,10 +236,11 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
     object-fit: cover;
     object-position: center;
     display: block;
+    border-radius: 0; /* Square edges */
   }
 
   .placeholder-label {
-    margin-top: 5px;
+    margin-top: 8px;
     font-size: 0.9em;
   }
 
@@ -255,6 +258,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
     .photo-item {
       width: 100%;
       max-width: 90%;
+      margin-bottom: 30px;
     }
   }
 </style>
