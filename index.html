@@ -203,29 +203,85 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- PHOTO SPREAD -->
-  <div class="photo-spread">
-    <div class="photo-item">
-      <div class="photo-placeholder">
-        <img src="IMG-20260412-WA0032.jpg"</img>
-        <div class="placeholder-label">Photo of Ritvik "Nature"</div>
-      </div>
-      <div class="photo-caption">
-        Ritvik — "Nature"
-        <em>Young man of remarkable calm · Known gravitational effect on all in his orbit</em>
-      </div>
+<style>
+  .photo-spread {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .photo-item {
+    flex: 1;
+    max-width: 450px;
+    text-align: center;
+    /* Restoring the original font style */
+    font-family: serif; 
+  }
+
+  .photo-placeholder {
+    position: relative;
+    width: 100%;
+  }
+
+  .photo-placeholder img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .placeholder-label {
+    margin-top: 5px;
+    font-size: 0.9em;
+  }
+
+  .photo-caption {
+    margin-top: 15px;
+    line-height: 1.4;
+  }
+
+  /* --- MOBILE VIEW --- */
+  @media (max-width: 768px) {
+    .photo-spread {
+      flex-direction: column;
+      align-items: center;
+    }
+    .photo-item {
+      width: 100%;
+      max-width: 90%;
+    }
+  }
+</style>
+
+<div class="photo-spread">
+  <div class="photo-item">
+    <div class="photo-placeholder">
+      <img src="IMG-20260412-WA0032.jpg" alt="Ritvik Nature">
+      <div class="placeholder-label">Photo of Ritvik "Nature"</div>
     </div>
-    <div class="photo-item">
-      <div class="photo-placeholder">
-        <img src="Mahatma-Gandhi,_studio,_1931.jpg">🕊️</img>
-        <div class="placeholder-label">Photo of Mahatma Gandhi</div>
-      </div>
-      <div class="photo-caption">
-        Mahatma Gandhi
-        <em>Father of the Indian Nation · Apostle of Peace · Born: Oct 2, 1869, Porbandar</em>
-      </div>
+    <div class="photo-caption">
+      Ritvik — "Nature"<br>
+      <em>Young man of remarkable calm · Known gravitational effect on all in his orbit</em>
     </div>
   </div>
+
+  <div class="photo-item">
+    <div class="photo-placeholder">
+      <img src="Mahatma-Gandhi,_studio,_1931.jpg" alt="Mahatma Gandhi">
+      <div class="placeholder-label">Photo of Mahatma Gandhi</div>
+    </div>
+    <div class="photo-caption">
+      Mahatma Gandhi<br>
+      <em>Father of the Indian Nation · Apostle of Peace · Born: Oct 2, 1869, Porbandar</em>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════ -->
 <!-- OPENING — single wide column -->
