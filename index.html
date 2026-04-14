@@ -10,11 +10,62 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color: #1a1a1a; }
 
-.masthead { background: #1a1a1a; color: #f5f0e8; text-align: center; padding: 1.2rem 2rem 1rem; border-bottom: 4px solid #c8a84b; }
-.masthead-top { display: flex; justify-content: space-between; align-items: center; font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: #888; margin-bottom: 0.6rem; text-transform: uppercase; }
-.paper-name { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1; color: #f5f0e8; }
-.paper-tagline { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.35em; color: #c8a84b; text-transform: uppercase; margin-top: 0.4rem; }
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: #c8a84b; z-index: 2000;
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* MASTHEAD — sticky + compact on scroll */
+.masthead {
+  position: sticky; top: 0; z-index: 1000;
+  background: #1a1a1a; color: #f5f0e8;
+  text-align: center; padding: 1.2rem 2rem 1rem;
+  border-bottom: 4px solid #c8a84b;
+  transition: padding 0.3s;
+}
+.masthead.compact { padding: 0.5rem 2rem; }
+.masthead-top {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.2em; color: #888; margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  transition: opacity 0.3s, max-height 0.3s;
+  max-height: 40px; overflow: hidden;
+}
+.masthead.compact .masthead-top { opacity: 0; max-height: 0; margin: 0; }
+.paper-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900; letter-spacing: -0.01em; line-height: 1; color: #f5f0e8;
+  transition: font-size 0.3s;
+}
+.masthead.compact .paper-name { font-size: clamp(1.3rem, 3vw, 2rem); }
+.paper-tagline {
+  font-family: 'Oswald', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.35em; color: #c8a84b; text-transform: uppercase; margin-top: 0.4rem;
+  transition: opacity 0.3s, max-height 0.3s;
+  max-height: 30px; overflow: hidden;
+}
+.masthead.compact .paper-tagline { opacity: 0; max-height: 0; margin: 0; }
+
 .breaking { background: #c8a84b; color: #1a1a1a; text-align: center; padding: 0.4rem; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 700; }
+
+/* HOME LINK */
+.home-link-bar {
+  background: #1a1a1a; padding: 0.5rem 2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  font-family: 'Oswald', sans-serif; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+.home-link-bar a {
+  color: #c8a84b; text-decoration: none;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s;
+}
+.home-link-bar a:hover { color: #f5f0e8; }
+.home-link-bar .sep { color: #333; }
 
 /* HERO HEADER — centered, no sidebar */
 .hero-header { max-width: 820px; margin: 0 auto; padding: 3.5rem 2rem 0; text-align: center; }
@@ -61,11 +112,11 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
 .chapter-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: #888; }
 .chapter-title { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.3vw, 1.8rem); font-weight: 700; line-height: 1.2; color: #1a1a1a; }
 
-/* REVERSED LAYOUT: sidebar LEFT, main RIGHT */
+/* REVERSED LAYOUT */
 .body-reversed { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 300px 1fr; gap: 3.5rem; align-items: start; }
 .sidebar-left { border-right: 2px solid #1a1a1a; padding-right: 2rem; }
 
-/* STANDARD LAYOUT: main LEFT, sidebar RIGHT */
+/* STANDARD LAYOUT */
 .body-wide { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3.5rem; align-items: start; }
 .sidebar-right { border-left: 2px solid #1a1a1a; padding-left: 2rem; }
 
@@ -179,8 +230,10 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
 </head>
 <body>
 
+<div id="progress-bar"></div>
+
 <!-- MASTHEAD -->
-<div class="masthead">
+<header class="masthead" id="masthead">
   <div class="masthead-top">
     <span>Sunday, April 12, 2026</span>
     <span>Cultural Analysis Edition</span>
@@ -188,12 +241,18 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
   <div class="paper-name">The Daily Forensic</div>
   <div class="paper-tagline">Truth In Every Pixel — Science In Every Story</div>
+</header>
+
+<!-- HOME BREADCRUMB -->
+<div class="home-link-bar" style="background:#1a1a1a; padding:0.5rem 2rem; display:flex; align-items:center; gap:0.8rem; font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase;">
+  <a href="https://thedailyforensic.github.io/" style="color:#c8a84b; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#f5f0e8'" onmouseout="this.style.color='#c8a84b'">← The Daily Forensic</a>
+  <span style="color:#333;">·</span>
+  <span style="color:#666;">Cultural Analysis Edition · Vol. XLII · No. 102</span>
 </div>
+
 <div class="breaking">⚡ Special Report: The Resemblance That Has Baffled Historians, Philosophers, and the General Public ⚡</div>
 
-<!-- ══════════════════════════════════ -->
-<!-- HERO HEADER — centered, no sidebar -->
-<!-- ══════════════════════════════════ -->
+<!-- HERO HEADER -->
 <div class="hero-header">
   <div class="article-category">Investigative Cultural Analysis — Extended Tribute Edition</div>
   <h1 class="headline">When Nature Mirrors the Father of a Nation: The Uncanny Case of Ritvik and the Mahatma</h1>
@@ -205,61 +264,18 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
 
 <style>
   .photo-spread {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* This is the Flexbox equivalent of vertical-align: top */
-    align-items: flex-start; 
-    gap: 30px;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    display: flex; flex-direction: row; justify-content: center;
+    align-items: flex-start; gap: 30px; padding: 20px;
+    width: 100%; box-sizing: border-box;
   }
-
-  .photo-item {
-    flex: 1;
-    max-width: 450px;
-    text-align: center;
-    font-family: serif; /* Original font style */
-  }
-
-  .photo-placeholder {
-    position: relative;
-    width: 100%;
-    /* Forces the vertical alignment at the top level */
-    vertical-align: top; 
-  }
-
-  .photo-placeholder img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-    border-radius: 0; /* Square edges */
-  }
-
-  .placeholder-label {
-    margin-top: 8px;
-    font-size: 0.9em;
-  }
-
-  .photo-caption {
-    margin-top: 15px;
-    line-height: 1.4;
-  }
-
-  /* --- MOBILE VIEW --- */
+  .photo-spread .photo-item { flex: 1; max-width: 450px; text-align: center; font-family: serif; }
+  .photo-spread .photo-placeholder { position: relative; width: 100%; vertical-align: top; }
+  .photo-spread .photo-placeholder img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: top; display: block; }
+  .placeholder-label { margin-top: 8px; font-size: 0.9em; }
+  .photo-spread .photo-caption { margin-top: 15px; line-height: 1.4; }
   @media (max-width: 768px) {
-    .photo-spread {
-      flex-direction: column;
-      align-items: center;
-    }
-    .photo-item {
-      width: 100%;
-      max-width: 90%;
-      margin-bottom: 30px;
-    }
+    .photo-spread { flex-direction: column; align-items: center; }
+    .photo-spread .photo-item { width: 100%; max-width: 90%; margin-bottom: 30px; }
   }
 </style>
 
@@ -274,7 +290,6 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
       <em>Young man of remarkable calm · Known gravitational effect on all in his orbit</em>
     </div>
   </div>
-
   <div class="photo-item">
     <div class="photo-placeholder">
       <img src="Mahatma-Gandhi,_studio,_1931.jpg" alt="Mahatma Gandhi">
@@ -287,9 +302,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- OPENING — single wide column -->
-<!-- ══════════════════════════════════ -->
+<!-- OPENING -->
 <div class="opening-col">
   <div class="disclaimer">⚠ Editorial Note: This investigation was conducted in full seriousness by a team that has since been asked, repeatedly, whether they are alright. They are. They are simply thorough.</div>
 
@@ -329,9 +342,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER I — sidebar LEFT -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER I -->
 <div class="chapter-band">
   <div class="chapter-band-inner">
     <div class="chapter-num">I</div>
@@ -406,9 +417,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER II — sidebar RIGHT -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER II -->
 <div class="chapter-band">
   <div class="chapter-band-inner">
     <div class="chapter-num">II</div>
@@ -498,9 +507,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   <div class="gold-band-attr">— One of Nature's friends, with only partial irony · Corroborated by three separate witnesses</div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER III — single column + charts -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER III -->
 <div class="chapter-band">
   <div class="chapter-band-inner">
     <div class="chapter-num">III</div>
@@ -560,9 +567,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER IV — reversed layout, timeline in sidebar -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER IV -->
 <div class="chapter-band" style="margin-top:3rem;">
   <div class="chapter-band-inner">
     <div class="chapter-num">IV</div>
@@ -609,9 +614,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   </div>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER V — single col -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER V -->
 <div class="chapter-band">
   <div class="chapter-band-inner">
     <div class="chapter-num">V</div>
@@ -643,9 +646,7 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   <cite>— Internal research notes, Phase 3 · Temperamental Analysis · The Daily Forensic</cite>
 </div>
 
-<!-- ══════════════════════════════════ -->
-<!-- CHAPTER VI — CONCLUSION -->
-<!-- ══════════════════════════════════ -->
+<!-- CHAPTER VI -->
 <div class="chapter-band">
   <div class="chapter-band-inner">
     <div class="chapter-num">VI</div>
@@ -689,15 +690,12 @@ body { background: #f5f0e8; font-family: 'Source Serif 4', Georgia, serif; color
   © 2026 The Daily Forensic · Truth In Every Pixel · All Rights Reserved · Forensic Cultural Division · Vol. XLII · No. 102
 </div>
 
-<!-- ══════════════════════════════════ -->
 <!-- ALL CHARTS -->
-<!-- ══════════════════════════════════ -->
 <script>
 const gold = '#c8a84b', dark = '#1a1a1a', cream = '#f5f0e8', mid = '#888';
 Chart.defaults.font.family = "'Oswald', sans-serif";
 Chart.defaults.color = '#444';
 
-// FIG 1 — RADAR
 new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
@@ -713,7 +711,6 @@ new Chart(document.getElementById('radarChart'), {
   }
 });
 
-// FIG 2 — SIMPLICITY BAR
 new Chart(document.getElementById('simplicityBar'), {
   type: 'bar',
   data: {
@@ -732,7 +729,6 @@ new Chart(document.getElementById('simplicityBar'), {
   }
 });
 
-// FIG 3 — DOUGHNUT calm transmission
 new Chart(document.getElementById('calmChart'), {
   type: 'doughnut',
   data: {
@@ -742,7 +738,6 @@ new Chart(document.getElementById('calmChart'), {
   options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 8 }, boxWidth: 10, padding: 5 } } }, cutout: '55%' }
 });
 
-// FIG 4 — HORIZONTAL BAR conflict
 new Chart(document.getElementById('conflictChart'), {
   type: 'bar',
   data: {
@@ -756,7 +751,6 @@ new Chart(document.getElementById('conflictChart'), {
   }
 });
 
-// FIG 5 — LINE chai
 new Chart(document.getElementById('chaiChart'), {
   type: 'line',
   data: {
@@ -777,7 +771,6 @@ new Chart(document.getElementById('chaiChart'), {
   }
 });
 
-// FIG 6 — FULL OVERLAP LINE
 new Chart(document.getElementById('overlapChart'), {
   type: 'line',
   data: {
@@ -796,7 +789,7 @@ new Chart(document.getElementById('overlapChart'), {
   }
 });
 
-// ANIMATE TRAIT BARS
+// Animate trait bars
 const barData = [
   {id:'b1',w:'97%'},{id:'b2',w:'91%'},{id:'b3',w:'95%'},
   {id:'b4',w:'88%'},{id:'b5',w:'100%'},{id:'b6',w:'99%'},{id:'b7',w:'96%'}
@@ -811,6 +804,15 @@ const bObs = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 const firstBar = document.getElementById('b1');
 if (firstBar) bObs.observe(firstBar.closest('.sidebar-box'));
+
+// ── SCROLLING MASTHEAD + PROGRESS BAR ──
+const bar = document.getElementById('progress-bar');
+const mh = document.getElementById('masthead');
+window.addEventListener('scroll', () => {
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (window.scrollY / h * 100) + '%';
+  mh.classList.toggle('compact', window.scrollY > 80);
+});
 </script>
 </body>
 </html>
